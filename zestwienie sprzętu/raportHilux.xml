@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="windows-1250"?>
+<Export>
+	<Headers>
+		<Header>
+		<Section>Nazwa</Section>
+		<Section>Etat</Section>
+		<Section>Skrytka</Section>
+		</Header>
+	</Headers>
+	<Items>
+		<Item>
+			<SubItem>Apteczka pierwszej pomocy samochodowa</SubItem>
+			<SubItem>1</SubItem>
+			<SubItem>Kabina</SubItem>
+		</Item>
+		<Item>
+			<SubItem>Gaśnica proszkowa 1kg</SubItem>
+			<SubItem>1</SubItem>
+			<SubItem>Kabina</SubItem>
+		</Item>
+		<Item>
+			<SubItem>Radiotelefon - Przewoźny Motorolla </SubItem>
+			<SubItem>1</SubItem>
+			<SubItem>Kabina</SubItem>
+		</Item>
+		<Item>
+			<SubItem>Terminal statusów ELTE GPS D 805</SubItem>
+			<SubItem>1</SubItem>
+			<SubItem>Kabina</SubItem>
+		</Item>
+		<Item>
+			<SubItem>Radiotelefon - Przenośny przenośny GP360</SubItem>
+			<SubItem>1</SubItem>
+			<SubItem>Kabina</SubItem>
+		</Item>
+		<Item>
+			<SubItem>Latarka SURVIVOR - 0562</SubItem>
+			<SubItem>1</SubItem>
+			<SubItem>Kabina</SubItem>
+		</Item>
+	</Items>
+</Export>
