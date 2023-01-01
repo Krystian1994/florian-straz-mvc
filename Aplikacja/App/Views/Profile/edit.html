@@ -167,7 +167,7 @@
                         <button class="btn btn-danger collapsed bt-sm m-3 w-75" data-bs-toggle="collapse" href="#multiCollapseExample2" role="button" aria-expanded="false" aria-controls="multiCollapseExample2" width="22" height="22"> Dodaj sprzęt </button>
                         <div class="col w-100 m-auto">
                             <div class="multi-collapse collapse w-100 m-auto" id="multiCollapseExample2">
-                                <form method="post" action="#">
+                                <form method="post" action="/edit/edit">
                                     <div class="d-flex align-items-center flex-column">
                                         <div class="input-group col-md-4 col-7 m-1">
                                             <div class=" input-group-prepend">
@@ -230,6 +230,7 @@
                                             <input type="number" min="1" step="1" class="form-control"
                                                 placeholder="Ilość" name="quantity" required>
                                         </div>
+                                        <input type="hidden" name="user" value="{{ user.rank }} {{user.surname}}">
                                     </div>
                                     <div class="d-flex justify-content-center">
                                         <div class="d-flex justify-content-center col-8 border-bottom">

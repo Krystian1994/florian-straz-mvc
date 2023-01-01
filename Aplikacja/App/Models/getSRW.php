@@ -12,7 +12,7 @@ class getSRW extends \Core\Model{
         $three = "Skrytka lewa I";
         $four = "Skrytka lewa II";
 
-        $sql = 'SELECT * FROM srw WHERE space = :one OR space = :two OR space = :three OR space = :four';
+        $sql = 'SELECT * FROM srw WHERE space = :one OR space = :two OR space = :three OR space = :four ORDER BY space';
 
         $db = static::getDB();
         $stmt = $db->prepare($sql);
@@ -33,7 +33,7 @@ class getSRW extends \Core\Model{
         $two = "Skrytka prawa I";
         $three = "Skrytka prawa II";
 
-        $sql = 'SELECT * FROM srw WHERE space = :one OR space = :two OR space = :three';
+        $sql = 'SELECT * FROM srw WHERE space = :one OR space = :two OR space = :three ORDER BY space';
 
         $db = static::getDB();
         $stmt = $db->prepare($sql);

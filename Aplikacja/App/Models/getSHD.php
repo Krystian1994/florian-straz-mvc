@@ -7,7 +7,7 @@ use \App\Token;
 
 class getSHD extends \Core\Model{
     public static function getSHDcategories(){
-        $sql = 'SELECT * FROM shd';
+        $sql = 'SELECT * FROM shd ORDER BY space';
 
         $db = static::getDB();
         $stmt = $db->prepare($sql);

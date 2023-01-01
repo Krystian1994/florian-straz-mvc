@@ -10,7 +10,7 @@ class getGBA extends \Core\Model{
         $one = "Kabina";
         $two = "Bagażnik";
 
-        $sql = 'SELECT * FROM gba WHERE space = :one OR space = :two';
+        $sql = 'SELECT * FROM gba WHERE space = :one OR space = :two ORDER BY space';
 
         $db = static::getDB();
         $stmt = $db->prepare($sql);
@@ -28,7 +28,7 @@ class getGBA extends \Core\Model{
         $two = "Skrytka lewa II";
         $three = "Skrytka lewa III";
 
-        $sql = 'SELECT * FROM gba WHERE space = :one OR space = :two OR space = :three';
+        $sql = 'SELECT * FROM gba WHERE space = :one OR space = :two OR space = :three ORDER BY space';
 
         $db = static::getDB();
         $stmt = $db->prepare($sql);
@@ -48,7 +48,7 @@ class getGBA extends \Core\Model{
         $three = "Skrytka prawa III";
         $roof = "Dach";
 
-        $sql = 'SELECT * FROM gba WHERE space = :one OR space = :two OR space = :three OR space = :roof';
+        $sql = 'SELECT * FROM gba WHERE space = :one OR space = :two OR space = :three OR space = :roof ORDER BY space';
 
         $db = static::getDB();
         $stmt = $db->prepare($sql);

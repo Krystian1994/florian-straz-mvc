@@ -5,23 +5,9 @@ namespace App;
 use App\Models\User;
 use App\Models\RememberedLogin;
 
-/**
- * Authentication
- *
- * PHP version 7.0
- */
-class Auth
-{
-    /**
-     * Login the user
-     *
-     * @param User $user The user model
-     * @param boolean $remember_me Remember the login if true
-     *
-     * @return void
-     */
-    public static function login($user, $remember_me)
-    {
+
+class Auth{
+    public static function login($user, $remember_me){
         session_regenerate_id(true);
 
         $_SESSION['user_id'] = $user->id;
@@ -36,13 +22,7 @@ class Auth
         }
     }
 
-    /**
-     * Logout the user
-     *
-     * @return void
-     */
-    public static function logout()
-    {
+    public static function logout(){
         // Unset all of the session variables
         $_SESSION = [];
 
@@ -67,33 +47,15 @@ class Auth
         static::forgetLogin();
     }
 
-    /**
-     * Remember the originally-requested page in the session
-     *
-     * @return void
-     */
-    public static function rememberRequestedPage()
-    {
+    public static function rememberRequestedPage(){
         $_SESSION['return_to'] = $_SERVER['REQUEST_URI'];
     }
 
-    /**
-     * Get the originally-requested page to return to after requiring login, or default to the homepage
-     *
-     * @return void
-     */
-    public static function getReturnToPage()
-    {
+    public static function getReturnToPage(){
         return $_SESSION['return_to'] ?? '/';
     }
 
-    /**
-     * Get the current logged-in user, from the session or the remember-me cookie
-     *
-     * @return mixed The user model or null if not logged in
-     */
-    public static function getUser()
-    {
+    public static function getUser(){
         if (isset($_SESSION['user_id'])) {
 
             return User::findByID($_SESSION['user_id']);
@@ -104,13 +66,7 @@ class Auth
         }
     }
 
-    /**
-     * Login the user from a remembered login cookie
-     *
-     * @return mixed The user model if login cookie found; null otherwise
-     */
-    protected static function loginFromRememberCookie()
-    {
+    protected static function loginFromRememberCookie(){
         $cookie = $_COOKIE['remember_me'] ?? false;
 
         if ($cookie) {
@@ -129,13 +85,7 @@ class Auth
         }
     }
 
-    /**
-     * Forget the remembered login, if present
-     *
-     * @return void
-     */
-    protected static function forgetLogin()
-    {
+    protected static function forgetLogin(){
         $cookie = $_COOKIE['remember_me'] ?? false;
 
         if ($cookie) {

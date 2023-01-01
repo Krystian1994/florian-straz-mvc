@@ -6,8 +6,6 @@ use PDO;
 use \App\Token;
 
 class setModification extends \Core\Model{
-    public $errors = [];
-
     public function __construct($data = []){
         foreach ($data as $key => $value) {
             $this->$key = $value;
@@ -15,10 +13,10 @@ class setModification extends \Core\Model{
     }
 
     public static function setLastModification($comment, $user, $id){
+        $comment = htmlentities($comment,ENT_QUOTES,"UTF-8");
+
         $date = date("Y-m-d"); 
-
         
-
         $sql = 'UPDATE modification SET comment = :comment, user = :user, date = :date WHERE id = :id';
 
         $db = static::getDB();
@@ -32,12 +30,6 @@ class setModification extends \Core\Model{
         $stmt->execute();
         
         return true;
-    }
-    
-    public function validateComment(){
-        // Comment
-        $this->comment = htmlentities($this->comment,ENT_QUOTES,"UTF-8");
-
     }
 }
 

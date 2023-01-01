@@ -286,7 +286,7 @@ class User extends \Core\Model{
     public function resetPassword($password){
         $this->password = $password;
 
-        $this->validate();
+        $this->validateReset();
 
         //return empty($this->errors);
         if (empty($this->errors)) {
@@ -396,6 +396,23 @@ class User extends \Core\Model{
             $this->errors[] = 'Podany email został użyty';
         }
 
+        // Password
+        if (isset($this->password)) {
+            if (strlen($this->password) < 6) {
+                $this->errors[] = 'Hasło musi zawierać minimum 6 znaków';
+            }
+    
+            if (preg_match('/.*[a-z]+.*/i', $this->password) == 0) {
+                $this->errors[] = 'Hasło musi zawierać minimum jedną literę';
+            }
+    
+            if (preg_match('/.*\d+.*/i', $this->password) == 0) {
+                $this->errors[] = 'Hasło musi zawierać minimum jedną liczbę';
+            }
+        }
+    }
+
+    public function validateReset(){
         // Password
         if (isset($this->password)) {
             if (strlen($this->password) < 6) {
