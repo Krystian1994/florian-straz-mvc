@@ -22,10 +22,9 @@ class User extends \Core\Model{
         $this->validate();
         $this->recaptchaCheck();
         if (empty($this->errors)) {
-
             $password_hash = password_hash($this->password, PASSWORD_DEFAULT);
 
-            $sql = 'UPDATE users SET rank = :rank, position = :position, password = :password_hash, email = :email WHERE username = :username AND surname = :surname AND division = :division';
+            $sql = 'UPDATE users SET rank = :rank, position = :position, password = :password_hash, email = :email, privacy_police = :privacy_police WHERE username = :username AND surname = :surname AND division = :division';
 
             $db = static::getDB();
             $stmt = $db->prepare($sql);
@@ -34,6 +33,7 @@ class User extends \Core\Model{
             $stmt->bindValue(':position', $this->position, PDO::PARAM_STR);
             $stmt->bindValue(':password_hash', $password_hash, PDO::PARAM_STR);
             $stmt->bindValue(':email', $this->email, PDO::PARAM_STR);
+            $stmt->bindValue(':privacy_police', $this->police, PDO::PARAM_STR);
             $stmt->bindValue(':username', $this->username, PDO::PARAM_STR);
             $stmt->bindValue(':surname', $this->surname, PDO::PARAM_STR);
             $stmt->bindValue(':division', $this->division, PDO::PARAM_STR);
@@ -77,6 +77,12 @@ class User extends \Core\Model{
         if (static::emailExists($this->email, $this->id ?? null)) {
             $this->errors[] = 'Podany email został użyty';
         }
+
+        //Privacy Police
+        if(empty($this->police)){
+            $this->errors[] = 'Nie zaakceptowano Polityki Prywatności';
+        }
+
 
         // Password
         if (isset($this->password)) {

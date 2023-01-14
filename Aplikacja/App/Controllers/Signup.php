@@ -13,7 +13,9 @@ class Signup extends \Core\Controller
     public function newAction(){
         View::renderTemplate('Signup/new.html');
     }
-
+    public function policeAction(){
+        View::renderTemplate('Signup/police.html');
+    }
 
     public function createAction(){
         $user = new User($_POST);
