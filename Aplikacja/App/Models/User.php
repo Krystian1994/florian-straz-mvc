@@ -48,7 +48,7 @@ class User extends \Core\Model{
 
     private function recaptchaCheck(){
          //sprawdzamy recaptche
-         $secret = '6LcA9_khAAAAAExJH8XKebdCC0-SwL6ZZh87eSZB';
+         $secret = '6LcIkMYjAAAAAGETW4ikY4EYjA4jIcE-uqOz_mez';
          //łączymy się z serwerem googla w celu weryfikacji recaptchy
          $check = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret='.$secret.'&response='.$_POST['g-recaptcha-response']);
          //dekodujemy odpowiedź z formatu JSON
@@ -123,7 +123,7 @@ class User extends \Core\Model{
     }
 
     public function userExist(){
-        $sql = 'SELECT rank FROM users WHERE username = :username AND surname = :surname';
+        $sql = 'SELECT password FROM users WHERE username = :username AND surname = :surname';
 
         $db = static::getDB();
         $stmt = $db->prepare($sql);
@@ -131,8 +131,8 @@ class User extends \Core\Model{
         $stmt->bindValue(':surname', $this->surname, PDO::PARAM_STR);
         if($stmt->execute()){
             $person = $stmt->fetch();
-            if(isset($person['rank'])){
-                if($person['rank'] != ''){
+            if(isset($person['password'])){
+                if($person['password'] != ''){
                     return true;
                 }
             }

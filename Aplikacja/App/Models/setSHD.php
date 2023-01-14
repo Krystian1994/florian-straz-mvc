@@ -15,9 +15,12 @@ class setSHD extends \Core\Model{
 
     public function setCheckSHD(){
         if($this->setAllLikeFalse()){
-            foreach($this->checkbox as $value) {
-                $idEquipment = $value;
-                $this->addChangesSHD($idEquipment);
+            if(isset($this->checkbox)){
+                foreach($this->checkbox as $value) {
+                    $idEquipment = $value;
+                    $this->addChangesSHD($idEquipment);
+                }
+                return true;
             }
             return true;
         }

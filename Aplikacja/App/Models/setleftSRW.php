@@ -15,9 +15,12 @@ class setleftSRW extends \Core\Model{
 
     public function setLeftCheckSRW(){
         if($this->setLeftAllLikeFalse()){
-            foreach($this->checkbox as $value) {
-                $idEquipment = $value;
-                $this->addChangesSRW($idEquipment);
+            if(isset($this->checkbox)){
+                foreach($this->checkbox as $value) {
+                    $idEquipment = $value;
+                    $this->addChangesSRW($idEquipment);
+                }
+                return true;
             }
             return true;
         }

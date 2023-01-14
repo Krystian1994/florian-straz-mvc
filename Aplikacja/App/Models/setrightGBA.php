@@ -15,9 +15,12 @@ class setrightGBA extends \Core\Model{
 
     public function setRightCheckGBA(){
         if($this->setRightAllLikeFalse()){
-            foreach($this->checkbox as $value) {
-                $idEquipment = $value;
-                $this->addChangesGBA($idEquipment);
+            if(isset($this->checkbox)){
+                foreach($this->checkbox as $value) {
+                    $idEquipment = $value;
+                    $this->addChangesGBA($idEquipment);
+                }
+                return true;
             }
             return true;
         }

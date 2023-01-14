@@ -18,7 +18,10 @@ class setEdit extends \Core\Model{
         $this->validate();
 
         if(empty($this->errors)){
-            $sql = 'INSERT INTO gba SET name = :name, quantity = :quantity, space = :space, date_modification = :date_modification, user = :user';
+            $status = "success";
+            $date = date("Y-m-d"); 
+
+            $sql = 'INSERT INTO gba SET name = :name, quantity = :quantity, space = :space, status = :status, date_modification = :date_modification, user = :user';
 
             $db = static::getDB();
             $stmt = $db->prepare($sql);
@@ -26,7 +29,8 @@ class setEdit extends \Core\Model{
             $stmt->bindValue(':name', $this->name, PDO::PARAM_STR);
             $stmt->bindValue(':quantity', $this->quantity, PDO::PARAM_STR);
             $stmt->bindValue(':space', $this->space, PDO::PARAM_STR);
-            $stmt->bindValue(':date_modification', $this->date, PDO::PARAM_STR);
+            $stmt->bindValue(':status', $status, PDO::PARAM_STR);
+            $stmt->bindValue(':date_modification', $date, PDO::PARAM_STR);
             $stmt->bindValue(':user', $this->user, PDO::PARAM_STR);
             
             $stmt->execute();
@@ -41,7 +45,10 @@ class setEdit extends \Core\Model{
         $this->validate();
 
         if(empty($this->errors)){
-            $sql = 'INSERT INTO gcba SET name = :name, quantity = :quantity, space = :space, date_modification = :date_modification, user = :user';
+            $status = "success";
+            $date = date("Y-m-d");
+
+            $sql = 'INSERT INTO gcba SET name = :name, quantity = :quantity, space = :space, status = :status, date_modification = :date_modification, user = :user';
 
             $db = static::getDB();
             $stmt = $db->prepare($sql);
@@ -49,7 +56,8 @@ class setEdit extends \Core\Model{
             $stmt->bindValue(':name', $this->name, PDO::PARAM_STR);
             $stmt->bindValue(':quantity', $this->quantity, PDO::PARAM_STR);
             $stmt->bindValue(':space', $this->space, PDO::PARAM_STR);
-            $stmt->bindValue(':date_modification', $this->date, PDO::PARAM_STR);
+            $stmt->bindValue(':status', $status, PDO::PARAM_STR);
+            $stmt->bindValue(':date_modification', $date, PDO::PARAM_STR);
             $stmt->bindValue(':user', $this->user, PDO::PARAM_STR);
             
             $stmt->execute();
@@ -64,7 +72,10 @@ class setEdit extends \Core\Model{
         $this->validate();
 
         if(empty($this->errors)){
-            $sql = 'INSERT INTO shd SET name = :name, quantity = :quantity, space = :space, date_modification = :date_modification, user = :user';
+            $status = "success";
+            $date = date("Y-m-d");
+
+            $sql = 'INSERT INTO shd SET name = :name, quantity = :quantity, space = :space,  status = :status, date_modification = :date_modification, user = :user';
 
             $db = static::getDB();
             $stmt = $db->prepare($sql);
@@ -72,7 +83,8 @@ class setEdit extends \Core\Model{
             $stmt->bindValue(':name', $this->name, PDO::PARAM_STR);
             $stmt->bindValue(':quantity', $this->quantity, PDO::PARAM_STR);
             $stmt->bindValue(':space', $this->space, PDO::PARAM_STR);
-            $stmt->bindValue(':date_modification', $this->date, PDO::PARAM_STR);
+            $stmt->bindValue(':status', $status, PDO::PARAM_STR);
+            $stmt->bindValue(':date_modification', $date, PDO::PARAM_STR);
             $stmt->bindValue(':user', $this->user, PDO::PARAM_STR);
             
             $stmt->execute();
@@ -87,7 +99,10 @@ class setEdit extends \Core\Model{
         $this->validate();
 
         if(empty($this->errors)){
-            $sql = 'INSERT INTO srw SET name = :name, quantity = :quantity, space = :space, date_modification = :date_modification, user = :user';
+            $status = "success";
+            $date = date("Y-m-d");
+
+            $sql = 'INSERT INTO srw SET name = :name, quantity = :quantity, space = :space, status = :status, date_modification = :date_modification, user = :user';
 
             $db = static::getDB();
             $stmt = $db->prepare($sql);
@@ -95,7 +110,8 @@ class setEdit extends \Core\Model{
             $stmt->bindValue(':name', $this->name, PDO::PARAM_STR);
             $stmt->bindValue(':quantity', $this->quantity, PDO::PARAM_STR);
             $stmt->bindValue(':space', $this->space, PDO::PARAM_STR);
-            $stmt->bindValue(':date_modification', $this->date, PDO::PARAM_STR);
+            $stmt->bindValue(':status', $status, PDO::PARAM_STR);
+            $stmt->bindValue(':date_modification', $date, PDO::PARAM_STR);
             $stmt->bindValue(':user', $this->user, PDO::PARAM_STR);
             
             $stmt->execute();
@@ -110,7 +126,10 @@ class setEdit extends \Core\Model{
         $this->validate();
         
         if(empty($this->errors)){
-            $sql = 'INSERT INTO slrr SET name = :name, quantity = :quantity, space = :space, date_modification = :date_modification, user = :user';
+            $status = "success";
+            $date = date("Y-m-d");
+
+            $sql = 'INSERT INTO slrr SET name = :name, quantity = :quantity, space = :space, status = :status, date_modification = :date_modification, user = :user';
 
             $db = static::getDB();
             $stmt = $db->prepare($sql);
@@ -118,7 +137,8 @@ class setEdit extends \Core\Model{
             $stmt->bindValue(':name', $this->name, PDO::PARAM_STR);
             $stmt->bindValue(':quantity', $this->quantity, PDO::PARAM_STR);
             $stmt->bindValue(':space', $this->space, PDO::PARAM_STR);
-            $stmt->bindValue(':date_modification', $this->date, PDO::PARAM_STR);
+            $stmt->bindValue(':status', $status, PDO::PARAM_STR);
+            $stmt->bindValue(':date_modification', $date, PDO::PARAM_STR);
             $stmt->bindValue(':user', $this->user, PDO::PARAM_STR);
             
             $stmt->execute();
@@ -135,11 +155,6 @@ class setEdit extends \Core\Model{
         }
 
         $this->name = htmlentities($this->name,ENT_QUOTES,"UTF-8");
-
-        $badDate = '';
-        if($this->date == $badDate){
-            $this->errors[] = "Nie podano daty dodania.";
-        }
         
         if(!isset($this->space)){
             $this->errors[] = "Nie wybrano miejsca składowania.";

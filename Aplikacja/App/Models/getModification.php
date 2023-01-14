@@ -17,6 +17,11 @@ class getModification extends \Core\Model{
         $stmt->execute();
         $lastModification = $stmt->fetch();
 
+        if(isset($lastModification['comment'])){
+            $lastModification['comment'] = str_replace("&oacute;","ó",$lastModification['comment']);
+            $lastModification['comment'] = str_replace("&Oacute;","Ó",$lastModification['comment']);
+        }
+        
         return $lastModification;
     }
     

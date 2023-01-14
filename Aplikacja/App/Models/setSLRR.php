@@ -15,9 +15,12 @@ class setSLRR extends \Core\Model{
 
     public function setCheckSLRR(){
         if($this->setAllLikeFalse()){
-            foreach($this->checkbox as $value) {
-                $idEquipment = $value;
-                $this->addChangesSLRR($idEquipment);
+            if(isset($this->checkbox)){
+                foreach($this->checkbox as $value) {
+                    $idEquipment = $value;
+                    $this->addChangesSLRR($idEquipment);
+                }
+                return true;
             }
             return true;
         }

@@ -15,9 +15,12 @@ class setGCBA extends \Core\Model{
 
     public function setCheckGCBA(){
         if($this->setAllLikeFalse()){
-            foreach($this->checkbox as $value) {
-                $idEquipment = $value;
-                $this->addChangesGCBA($idEquipment);
+            if(isset($this->checkbox)){
+                foreach($this->checkbox as $value) {
+                    $idEquipment = $value;
+                    $this->addChangesGCBA($idEquipment);
+                }
+                return true;
             }
             return true;
         }
