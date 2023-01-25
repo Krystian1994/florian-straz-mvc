@@ -7,10 +7,7 @@ use \App\Auth;
 use \App\Flash;
 use \App\Models\getGBA;
 use \App\Models\getModification;
-
-use \App\Models\setcabinGBA;
-use \App\Models\setleftGBA;
-use \App\Models\setrightGBA;
+use \App\Models\setGBA;
 use \App\Models\setModification;
 
 class Gba extends Authenticated{
@@ -24,10 +21,12 @@ class Gba extends Authenticated{
         $categoriesCabinGba = getGBA::getCabinGBAcategories();
         $categoriesLeftGba = getGBA::getLeftGBAcategories();
         $categoriesRightGba = getGBA::getRightGBAcategories();
+        $categoriesRoofGba = getGBA::getRoofGBAcategories();
 
         $personI = getModification::getLastModification('1');
         $personII = getModification::getLastModification('2');
         $personIII = getModification::getLastModification('3');
+        $personIV = getModification::getLastModification('4');
 
         $nameGBA = "GBA 2,5/24/4";
 
@@ -36,20 +35,22 @@ class Gba extends Authenticated{
             'categoriesCabinGba' => $categoriesCabinGba,
             'categoriesLeftGba' => $categoriesLeftGba,
             'categoriesRightGba' => $categoriesRightGba,
+            'categoriesRoofGba' => $categoriesRoofGba,
             'personI' => $personI,
             'personII' => $personII,
             'personIII' => $personIII,
+            'personIV' => $personIV,
             'nameGBA' => $nameGBA
         ]);
     }
 
-    public function gbasetAction(){
-        $setgba = new setcabinGBA($_POST);
-        $setMod = new setModification();
+    public function cabingbaAction(){
+        $setCabinGba = new setGBA($_POST);
+        $setCabinMod = new setModification();
 
         
-        if ($setgba->setCabinCheckGBA()){
-            if($setMod->setLastModification($_POST['comment'],$_POST['usermod'],$_POST['idMod'])){
+        if ($setCabinGba->setCabinCheckGBA()){
+            if($setCabinMod->setLastModification($_POST['comment'],$_POST['usermod'],$_POST['idMod'])){
                 Flash::addMessage('Przejęte.', Flash::INFO);
             
                 $this->redirect('/Gba/gba');
@@ -67,11 +68,11 @@ class Gba extends Authenticated{
     }
 
     public function leftgbaAction(){
-        $setgba = new setleftGBA($_POST);
-        $setMod = new setModification();
+        $setLeftGba = new setGBA($_POST);
+        $setLeftMod = new setModification();
 
-        if ($setgba->setLeftCheckGBA()){
-            if($setMod->setLastModification($_POST['comment'],$_POST['usermod'],$_POST['idMod'])){
+        if ($setLeftGba->setLeftCheckGBA()){
+            if($setLeftMod->setLastModification($_POST['comment'],$_POST['usermod'],$_POST['idMod'])){
                 Flash::addMessage('Przejęte.', Flash::INFO);
             
                 $this->redirect('/Gba/gba');
@@ -90,11 +91,11 @@ class Gba extends Authenticated{
     }
 
     public function rightgbaAction(){
-        $setgba = new setRightGBA($_POST);
-        $setMod = new setModification();
+        $setRightGba = new setGBA($_POST);
+        $setRightMod = new setModification();
 
-        if ($setgba->setRightCheckGBA()){
-            if($setMod->setLastModification($_POST['comment'],$_POST['usermod'],$_POST['idMod'])){
+        if ($setRightGba->setRightCheckGBA()){
+            if($setRightMod->setLastModification($_POST['comment'],$_POST['usermod'],$_POST['idMod'])){
                 Flash::addMessage('Przejęte.', Flash::INFO);
             
                 $this->redirect('/Gba/gba');
@@ -110,5 +111,26 @@ class Gba extends Authenticated{
             $this->redirect('/Gba/gba');
         }
     }
-    
+
+    public function roofgbaAction(){
+        $setRoofGba = new setGBA($_POST);
+        $setRoofMod = new setModification();
+
+        if ($setRoofGba->setRoofCheckGBA()){
+            if($setRoofMod->setLastModification($_POST['comment'],$_POST['usermod'],$_POST['idMod'])){
+                Flash::addMessage('Przejęte.', Flash::INFO);
+            
+                $this->redirect('/Gba/gba');
+            } else {
+                Flash::addMessage('Błąd.', Flash::WARNING);
+            
+                $this->redirect('/Gba/gba');
+            }
+            
+        } else {
+            Flash::addMessage('Pierwszy Błąd.', Flash::WARNING);
+            
+            $this->redirect('/Gba/gba');
+        }
+    }
 }

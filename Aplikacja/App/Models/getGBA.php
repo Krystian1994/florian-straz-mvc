@@ -8,15 +8,13 @@ use \App\Token;
 class getGBA extends \Core\Model{
     public static function getCabinGBAcategories(){
         $one = "Kabina";
-        $two = "Bagażnik";
 
-        $sql = 'SELECT * FROM gba WHERE space = :one OR space = :two ORDER BY space';
+        $sql = 'SELECT * FROM gba WHERE space = :one ORDER BY space, name';
 
         $db = static::getDB();
         $stmt = $db->prepare($sql);
 
         $stmt->bindValue(':one', $one, PDO::PARAM_STR);
-        $stmt->bindValue(':two', $two, PDO::PARAM_STR);
 
         $stmt->execute();
         $categoryOfCabinGBA = $stmt->fetchAll();
@@ -28,7 +26,7 @@ class getGBA extends \Core\Model{
         $two = "Skrytka lewa II";
         $three = "Skrytka lewa III";
 
-        $sql = 'SELECT * FROM gba WHERE space = :one OR space = :two OR space = :three ORDER BY space';
+        $sql = 'SELECT * FROM gba WHERE space = :one OR space = :two OR space = :three ORDER BY space, name';
 
         $db = static::getDB();
         $stmt = $db->prepare($sql);
@@ -46,9 +44,8 @@ class getGBA extends \Core\Model{
         $one = "Skrytka prawa I";
         $two = "Skrytka prawa II";
         $three = "Skrytka prawa III";
-        $roof = "Dach";
 
-        $sql = 'SELECT * FROM gba WHERE space = :one OR space = :two OR space = :three OR space = :roof ORDER BY space';
+        $sql = 'SELECT * FROM gba WHERE space = :one OR space = :two OR space = :three ORDER BY space, name';
 
         $db = static::getDB();
         $stmt = $db->prepare($sql);
@@ -56,12 +53,29 @@ class getGBA extends \Core\Model{
         $stmt->bindValue(':one', $one, PDO::PARAM_STR);
         $stmt->bindValue(':two', $two, PDO::PARAM_STR);
         $stmt->bindValue(':three', $three, PDO::PARAM_STR);
-        $stmt->bindValue(':roof', $roof, PDO::PARAM_STR);
 
         $stmt->execute();
         $categoryOfRightGBA = $stmt->fetchAll();
 
         return $categoryOfRightGBA;
+    }
+
+    public static function getRoofGBAcategories(){
+        $two = "Bagażnik";
+        $roof = "Dach";
+
+        $sql = 'SELECT * FROM gba WHERE space = :two OR space = :roof ORDER BY space, name';
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+
+        $stmt->bindValue(':two', $two, PDO::PARAM_STR);
+        $stmt->bindValue(':roof', $roof, PDO::PARAM_STR);
+
+        $stmt->execute();
+        $categoryOfRoofGBA = $stmt->fetchAll();
+
+        return $categoryOfRoofGBA;
     }
     
 }

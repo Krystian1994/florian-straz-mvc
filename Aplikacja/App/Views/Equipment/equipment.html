@@ -68,10 +68,10 @@
                 
                 <div class="d-flex align-items-center flex-column w-100 m-auto">
                     {% if categoriesCabinGba %} 
-                    <button class="btn btn-warning collapsed bt-sm m-3 w-75" data-bs-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1" width="22" height="22"> Kabina + Bagażnik </button>
+                    <button class="btn btn-warning collapsed bt-sm m-3 w-75" data-bs-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1" width="22" height="22"> Kabina </button>
                     <div class="col w-100 m-auto">
                         <div class="multi-collapse collapse w-100 m-auto" id="multiCollapseExample1">
-                            <form method="post" action="/gba/gbaset">
+                            <form method="post" action="/gba/cabingba">
                                 <table class="table">
                                     <thead>
                                         <tr>
@@ -156,7 +156,7 @@
                     {% endif %}
 
                     {% if categoriesRightGba %} 
-                    <button class="btn btn-warning collapsed bt-sm m-3 w-75" data-bs-toggle="collapse" href="#multiCollapseExample3" role="button" aria-expanded="false" aria-controls="multiCollapseExample3" width="22" height="22"> Skrytki Prawe + Dach </button>
+                    <button class="btn btn-warning collapsed bt-sm m-3 w-75" data-bs-toggle="collapse" href="#multiCollapseExample3" role="button" aria-expanded="false" aria-controls="multiCollapseExample3" width="22" height="22"> Skrytki Prawe </button>
                     <div class="col w-100 m-auto">
                         <div class="multi-collapse collapse w-100 m-auto" id="multiCollapseExample3">
                             <form method="post" action="/gba/rightgba">
@@ -199,22 +199,22 @@
                     </div>
                     {% endif %}
 
-                    {% if categoriesGcba %} 
-                    <button class="btn btn-warning collapsed bt-sm m-3 w-75" data-bs-toggle="collapse" href="#multiCollapseExample4" role="button" aria-expanded="false" aria-controls="multiCollapseExample4" width="22" height="22"> GCBA 5/32 </button>
+                    {% if categoriesRoofGba %} 
+                    <button class="btn btn-warning collapsed bt-sm m-3 w-75" data-bs-toggle="collapse" href="#multiCollapseExample4" role="button" aria-expanded="false" aria-controls="multiCollapseExample4" width="22" height="22"> Dach + Bagażnik </button>
                     <div class="col w-100 m-auto">
                         <div class="multi-collapse collapse w-100 m-auto" id="multiCollapseExample4">
-                            <form method="post" action="/gcba/gcbaset">
+                            <form method="post" action="/gba/roofgba">
                                 <table class="table">
                                     <thead>
                                         <tr>
-                                            <th colspan="4"><h5>{{ nameGCBA }}</h5></th>
+                                            <th colspan="4"><h5>{{ nameGBA }}</h5></th>
                                         </tr>    
                                         <tr>
                                             <td colspan="4"><p>Ostatnio przejmował: {{ personIV.user }} {{ personIV.date }}</p></td>
                                         </tr> 
                                         <tr>
                                             <td colspan="4"><p>{{ personIV.comment }}</p></td>
-                                        </tr> 
+                                        </tr>    
                                         <tr>
                                             <th scope="col"></th>
                                             <th scope="col">Nazwa:</th>
@@ -223,7 +223,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {% for category in categoriesGcba %}  
+                                        {% for category in categoriesRoofGba %}  
                                         <tr class="table-{{ category.status }}">
                                             <th scope="row"><input class="form-check-input m-0" type="checkbox" name="checkbox[]" value="{{ category.id }}"  id="{{ category.id }}"></th>
                                             <td><label class="form-check-label w-90" for="{{ category.id }}">{{ category.name }}</label></td>
@@ -235,7 +235,7 @@
                                 </table>
                                 <div>    
                                     <input type="hidden" name="idMod" value="{{ personIV.id }}">                      
-                                    <textarea class="form-control mb-3" id="exampleFormControlTextarea4" rows="3" placeholder="Dodaj komentarz (nie wymagany)" name="comment"></textarea>
+                                    <textarea class="form-control mb-3" id="exampleFormControlTextarea3" rows="3" placeholder="Dodaj komentarz (nie wymagany)" name="comment"></textarea>
                                     <button class="btn btn-primary" name="usermod" value="{{ user.rank }} {{ user.surname }}" type="submit">Przyjęte</button>
                                 </div>           
                             </form>
@@ -243,15 +243,15 @@
                     </div>
                     {% endif %}
 
-                    {% if categoriesShd %} 
-                    <button class="btn btn-warning collapsed bt-sm m-3 w-75" data-bs-toggle="collapse" href="#multiCollapseExample5" role="button" aria-expanded="false" aria-controls="multiCollapseExample5" width="22" height="22"> SHD 23 </button>
+                    {% if categoriesCabinGcba %} 
+                    <button class="btn btn-warning collapsed bt-sm m-3 w-75" data-bs-toggle="collapse" href="#multiCollapseExample5" role="button" aria-expanded="false" aria-controls="multiCollapseExample5" width="22" height="22"> Kabina </button>
                     <div class="col w-100 m-auto">
                         <div class="multi-collapse collapse w-100 m-auto" id="multiCollapseExample5">
-                            <form method="post" action="/shd/shdset">
+                            <form method="post" action="/gcba/cabingcba">
                                 <table class="table">
                                     <thead>
                                         <tr>
-                                            <th colspan="4"><h5>{{ nameSHD }}</h5></th>
+                                            <th colspan="4"><h5>{{ nameGCBA }}</h5></th>
                                         </tr>    
                                         <tr>
                                             <td colspan="4"><p>Ostatnio przejmował: {{ personV.user }} {{ personV.date }}</p></td>
@@ -267,7 +267,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {% for category in categoriesShd %}  
+                                        {% for category in categoriesCabinGcba %}  
                                         <tr class="table-{{ category.status }}">
                                             <th scope="row"><input class="form-check-input m-0" type="checkbox" name="checkbox[]" value="{{ category.id }}"  id="{{ category.id }}"></th>
                                             <td><label class="form-check-label w-90" for="{{ category.id }}">{{ category.name }}</label></td>
@@ -279,6 +279,182 @@
                                 </table>
                                 <div>    
                                     <input type="hidden" name="idMod" value="{{ personV.id }}">                      
+                                    <textarea class="form-control mb-3" id="exampleFormControlTextarea4" rows="3" placeholder="Dodaj komentarz (nie wymagany)" name="comment"></textarea>
+                                    <button class="btn btn-primary" name="usermod" value="{{ user.rank }} {{ user.surname }}" type="submit">Przyjęte</button>
+                                </div>           
+                            </form>
+                        </div>
+                    </div>
+                    {% endif %}
+
+                    {% if categoriesLeftGcba %} 
+                    <button class="btn btn-warning collapsed bt-sm m-3 w-75" data-bs-toggle="collapse" href="#multiCollapseExample6" role="button" aria-expanded="false" aria-controls="multiCollapseExample6" width="22" height="22"> Skrytki Lewe </button>
+                    <div class="col w-100 m-auto">
+                        <div class="multi-collapse collapse w-100 m-auto" id="multiCollapseExample6">
+                            <form method="post" action="/gcba/leftgcba">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th colspan="4"><h5>{{ nameGCBA }}</h5></th>
+                                        </tr>    
+                                        <tr>
+                                            <td colspan="4"><p>Ostatnio przejmował: {{ personVI.user }} {{ personVI.date }}</p></td>
+                                        </tr> 
+                                        <tr>
+                                            <td colspan="4"><p>{{ personVI.comment }}</p></td>
+                                        </tr> 
+                                        <tr>
+                                            <th scope="col"></th>
+                                            <th scope="col">Nazwa:</th>
+                                            <th scope="col">Ilość:</th>
+                                            <th scope="col">Miejsce:</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for category in categoriesLeftGcba %}  
+                                        <tr class="table-{{ category.status }}">
+                                            <th scope="row"><input class="form-check-input m-0" type="checkbox" name="checkbox[]" value="{{ category.id }}"  id="{{ category.id }}"></th>
+                                            <td><label class="form-check-label w-90" for="{{ category.id }}">{{ category.name }}</label></td>
+                                            <td><label class="form-check-label w-90" for="{{ category.id }}">{{ category.quantity }}</label></td>
+                                            <td><label class="form-check-label w-90" for="{{ category.id }}">{{ category.space }}</label></td>
+                                        </tr>
+                                        {% endfor %} 
+                                    </tbody>
+                                </table>
+                                <div>    
+                                    <input type="hidden" name="idMod" value="{{ personVI.id }}">                      
+                                    <textarea class="form-control mb-3" id="exampleFormControlTextarea4" rows="3" placeholder="Dodaj komentarz (nie wymagany)" name="comment"></textarea>
+                                    <button class="btn btn-primary" name="usermod" value="{{ user.rank }} {{ user.surname }}" type="submit">Przyjęte</button>
+                                </div>           
+                            </form>
+                        </div>
+                    </div>
+                    {% endif %}
+
+                    {% if categoriesRightGcba %} 
+                    <button class="btn btn-warning collapsed bt-sm m-3 w-75" data-bs-toggle="collapse" href="#multiCollapseExample7" role="button" aria-expanded="false" aria-controls="multiCollapseExample7" width="22" height="22"> Skrytki Prawe </button>
+                    <div class="col w-100 m-auto">
+                        <div class="multi-collapse collapse w-100 m-auto" id="multiCollapseExample7">
+                            <form method="post" action="/gcba/rightgcba">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th colspan="4"><h5>{{ nameGCBA }}</h5></th>
+                                        </tr>    
+                                        <tr>
+                                            <td colspan="4"><p>Ostatnio przejmował: {{ personVII.user }} {{ personVII.date }}</p></td>
+                                        </tr> 
+                                        <tr>
+                                            <td colspan="4"><p>{{ personVII.comment }}</p></td>
+                                        </tr> 
+                                        <tr>
+                                            <th scope="col"></th>
+                                            <th scope="col">Nazwa:</th>
+                                            <th scope="col">Ilość:</th>
+                                            <th scope="col">Miejsce:</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for category in categoriesRightGcba %}  
+                                        <tr class="table-{{ category.status }}">
+                                            <th scope="row"><input class="form-check-input m-0" type="checkbox" name="checkbox[]" value="{{ category.id }}"  id="{{ category.id }}"></th>
+                                            <td><label class="form-check-label w-90" for="{{ category.id }}">{{ category.name }}</label></td>
+                                            <td><label class="form-check-label w-90" for="{{ category.id }}">{{ category.quantity }}</label></td>
+                                            <td><label class="form-check-label w-90" for="{{ category.id }}">{{ category.space }}</label></td>
+                                        </tr>
+                                        {% endfor %} 
+                                    </tbody>
+                                </table>
+                                <div>    
+                                    <input type="hidden" name="idMod" value="{{ personVII.id }}">                      
+                                    <textarea class="form-control mb-3" id="exampleFormControlTextarea4" rows="3" placeholder="Dodaj komentarz (nie wymagany)" name="comment"></textarea>
+                                    <button class="btn btn-primary" name="usermod" value="{{ user.rank }} {{ user.surname }}" type="submit">Przyjęte</button>
+                                </div>           
+                            </form>
+                        </div>
+                    </div>
+                    {% endif %}
+
+                    {% if categoriesRoofGcba %} 
+                    <button class="btn btn-warning collapsed bt-sm m-3 w-75" data-bs-toggle="collapse" href="#multiCollapseExample8" role="button" aria-expanded="false" aria-controls="multiCollapseExample8" width="22" height="22"> Dach + Bagażnik </button>
+                    <div class="col w-100 m-auto">
+                        <div class="multi-collapse collapse w-100 m-auto" id="multiCollapseExample8">
+                            <form method="post" action="/gcba/roofgcba">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th colspan="4"><h5>{{ nameGCBA }}</h5></th>
+                                        </tr>    
+                                        <tr>
+                                            <td colspan="4"><p>Ostatnio przejmował: {{ personVIII.user }} {{ personVIII.date }}</p></td>
+                                        </tr> 
+                                        <tr>
+                                            <td colspan="4"><p>{{ personVIII.comment }}</p></td>
+                                        </tr> 
+                                        <tr>
+                                            <th scope="col"></th>
+                                            <th scope="col">Nazwa:</th>
+                                            <th scope="col">Ilość:</th>
+                                            <th scope="col">Miejsce:</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for category in categoriesRoofGcba %}  
+                                        <tr class="table-{{ category.status }}">
+                                            <th scope="row"><input class="form-check-input m-0" type="checkbox" name="checkbox[]" value="{{ category.id }}"  id="{{ category.id }}"></th>
+                                            <td><label class="form-check-label w-90" for="{{ category.id }}">{{ category.name }}</label></td>
+                                            <td><label class="form-check-label w-90" for="{{ category.id }}">{{ category.quantity }}</label></td>
+                                            <td><label class="form-check-label w-90" for="{{ category.id }}">{{ category.space }}</label></td>
+                                        </tr>
+                                        {% endfor %} 
+                                    </tbody>
+                                </table>
+                                <div>    
+                                    <input type="hidden" name="idMod" value="{{ personVIII.id }}">                      
+                                    <textarea class="form-control mb-3" id="exampleFormControlTextarea4" rows="3" placeholder="Dodaj komentarz (nie wymagany)" name="comment"></textarea>
+                                    <button class="btn btn-primary" name="usermod" value="{{ user.rank }} {{ user.surname }}" type="submit">Przyjęte</button>
+                                </div>           
+                            </form>
+                        </div>
+                    </div>
+                    {% endif %}
+
+                    {% if categoriesCabinShd %} 
+                    <button class="btn btn-warning collapsed bt-sm m-3 w-75" data-bs-toggle="collapse" href="#multiCollapseExample9" role="button" aria-expanded="false" aria-controls="multiCollapseExample9" width="22" height="22"> Kabina + Dach </button>
+                    <div class="col w-100 m-auto">
+                        <div class="multi-collapse collapse w-100 m-auto" id="multiCollapseExample9">
+                            <form method="post" action="/shd/cabinshd">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th colspan="4"><h5>{{ nameSHD }}</h5></th>
+                                        </tr>    
+                                        <tr>
+                                            <td colspan="4"><p>Ostatnio przejmował: {{ personIX.user }} {{ personIX.date }}</p></td>
+                                        </tr> 
+                                        <tr>
+                                            <td colspan="4"><p>{{ personIX.comment }}</p></td>
+                                        </tr> 
+                                        <tr>
+                                            <th scope="col"></th>
+                                            <th scope="col">Nazwa:</th>
+                                            <th scope="col">Ilość:</th>
+                                            <th scope="col">Miejsce:</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for category in categoriesCabinShd %}  
+                                        <tr class="table-{{ category.status }}">
+                                            <th scope="row"><input class="form-check-input m-0" type="checkbox" name="checkbox[]" value="{{ category.id }}"  id="{{ category.id }}"></th>
+                                            <td><label class="form-check-label w-90" for="{{ category.id }}">{{ category.name }}</label></td>
+                                            <td><label class="form-check-label w-90" for="{{ category.id }}">{{ category.quantity }}</label></td>
+                                            <td><label class="form-check-label w-90" for="{{ category.id }}">{{ category.space }}</label></td>
+                                        </tr>
+                                        {% endfor %} 
+                                    </tbody>
+                                </table>
+                                <div>    
+                                    <input type="hidden" name="idMod" value="{{ personIX.id }}">                      
                                     <textarea class="form-control mb-3" id="exampleFormControlTextarea5" rows="3" placeholder="Dodaj komentarz (nie wymagany)" name="comment"></textarea>
                                     <button class="btn btn-primary" name="usermod" value="{{ user.rank }} {{ user.surname }}" type="submit">Przyjęte</button>
                                 </div>           
@@ -287,10 +463,142 @@
                     </div>
                     {% endif %}
 
-                    {% if categoriesLeftSrw %} 
-                    <button class="btn btn-warning collapsed bt-sm m-3 w-75" data-bs-toggle="collapse" href="#multiCollapseExample6" role="button" aria-expanded="false" aria-controls="multiCollapseExample6" width="22" height="22"> Lewa + Kabina </button>
+                    {% if categoriesLeftShd %} 
+                    <button class="btn btn-warning collapsed bt-sm m-3 w-75" data-bs-toggle="collapse" href="#multiCollapseExample10" role="button" aria-expanded="false" aria-controls="multiCollapseExample10" width="22" height="22"> Skrytki Lewe </button>
                     <div class="col w-100 m-auto">
-                        <div class="multi-collapse collapse w-100 m-auto" id="multiCollapseExample6">
+                        <div class="multi-collapse collapse w-100 m-auto" id="multiCollapseExample10">
+                            <form method="post" action="/shd/leftshd">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th colspan="4"><h5>{{ nameSHD }}</h5></th>
+                                        </tr>    
+                                        <tr>
+                                            <td colspan="4"><p>Ostatnio przejmował: {{ personX.user }} {{ personX.date }}</p></td>
+                                        </tr> 
+                                        <tr>
+                                            <td colspan="4"><p>{{ personX.comment }}</p></td>
+                                        </tr> 
+                                        <tr>
+                                            <th scope="col"></th>
+                                            <th scope="col">Nazwa:</th>
+                                            <th scope="col">Ilość:</th>
+                                            <th scope="col">Miejsce:</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for category in categoriesLeftShd %}  
+                                        <tr class="table-{{ category.status }}">
+                                            <th scope="row"><input class="form-check-input m-0" type="checkbox" name="checkbox[]" value="{{ category.id }}"  id="{{ category.id }}"></th>
+                                            <td><label class="form-check-label w-90" for="{{ category.id }}">{{ category.name }}</label></td>
+                                            <td><label class="form-check-label w-90" for="{{ category.id }}">{{ category.quantity }}</label></td>
+                                            <td><label class="form-check-label w-90" for="{{ category.id }}">{{ category.space }}</label></td>
+                                        </tr>
+                                        {% endfor %} 
+                                    </tbody>
+                                </table>
+                                <div>    
+                                    <input type="hidden" name="idMod" value="{{ personX.id }}">                      
+                                    <textarea class="form-control mb-3" id="exampleFormControlTextarea5" rows="3" placeholder="Dodaj komentarz (nie wymagany)" name="comment"></textarea>
+                                    <button class="btn btn-primary" name="usermod" value="{{ user.rank }} {{ user.surname }}" type="submit">Przyjęte</button>
+                                </div>           
+                            </form>
+                        </div>
+                    </div>
+                    {% endif %}
+
+                    {% if categoriesRightShd %} 
+                    <button class="btn btn-warning collapsed bt-sm m-3 w-75" data-bs-toggle="collapse" href="#multiCollapseExample11" role="button" aria-expanded="false" aria-controls="multiCollapseExample11" width="22" height="22"> Skrytki Prawe </button>
+                    <div class="col w-100 m-auto">
+                        <div class="multi-collapse collapse w-100 m-auto" id="multiCollapseExample11">
+                            <form method="post" action="/shd/rightshd">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th colspan="4"><h5>{{ nameSHD }}</h5></th>
+                                        </tr>    
+                                        <tr>
+                                            <td colspan="4"><p>Ostatnio przejmował: {{ personXI.user }} {{ personXI.date }}</p></td>
+                                        </tr> 
+                                        <tr>
+                                            <td colspan="4"><p>{{ personXI.comment }}</p></td>
+                                        </tr> 
+                                        <tr>
+                                            <th scope="col"></th>
+                                            <th scope="col">Nazwa:</th>
+                                            <th scope="col">Ilość:</th>
+                                            <th scope="col">Miejsce:</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for category in categoriesRightShd %}  
+                                        <tr class="table-{{ category.status }}">
+                                            <th scope="row"><input class="form-check-input m-0" type="checkbox" name="checkbox[]" value="{{ category.id }}"  id="{{ category.id }}"></th>
+                                            <td><label class="form-check-label w-90" for="{{ category.id }}">{{ category.name }}</label></td>
+                                            <td><label class="form-check-label w-90" for="{{ category.id }}">{{ category.quantity }}</label></td>
+                                            <td><label class="form-check-label w-90" for="{{ category.id }}">{{ category.space }}</label></td>
+                                        </tr>
+                                        {% endfor %} 
+                                    </tbody>
+                                </table>
+                                <div>    
+                                    <input type="hidden" name="idMod" value="{{ personXI.id }}">                      
+                                    <textarea class="form-control mb-3" id="exampleFormControlTextarea5" rows="3" placeholder="Dodaj komentarz (nie wymagany)" name="comment"></textarea>
+                                    <button class="btn btn-primary" name="usermod" value="{{ user.rank }} {{ user.surname }}" type="submit">Przyjęte</button>
+                                </div>           
+                            </form>
+                        </div>
+                    </div>
+                    {% endif %}
+
+                    {% if categoriesCabinSrw %} 
+                    <button class="btn btn-warning collapsed bt-sm m-3 w-75" data-bs-toggle="collapse" href="#multiCollapseExample12" role="button" aria-expanded="false" aria-controls="multiCollapseExample12" width="22" height="22"> Kabina </button>
+                    <div class="col w-100 m-auto">
+                        <div class="multi-collapse collapse w-100 m-auto" id="multiCollapseExample12">
+                            <form method="post" action="/srw/cabinsrw">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th colspan="4"><h5>{{ nameSRW }}</h5></th>
+                                        </tr>    
+                                        <tr>
+                                            <td colspan="4"><p>Ostatnio przejmował: {{ personXII.user }} {{ personXII.date }}</p></td>
+                                        </tr> 
+                                        <tr>
+                                            <td colspan="4"><p>{{ personXII.comment }}</p></td>
+                                        </tr> 
+                                        <tr>
+                                            <th scope="col"></th>
+                                            <th scope="col">Nazwa:</th>
+                                            <th scope="col">Ilość:</th>
+                                            <th scope="col">Miejsce:</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for category in categoriesCabinSrw %}  
+                                        <tr class="table-{{ category.status }}">
+                                            <th scope="row"><input class="form-check-input m-0" type="checkbox" name="checkbox[]" value="{{ category.id }}"  id="{{ category.id }}"></th>
+                                            <td><label class="form-check-label w-90" for="{{ category.id }}">{{ category.name }}</label></td>
+                                            <td><label class="form-check-label w-90" for="{{ category.id }}">{{ category.quantity }}</label></td>
+                                            <td><label class="form-check-label w-90" for="{{ category.id }}">{{ category.space }}</label></td>
+                                        </tr>
+                                        {% endfor %} 
+                                    </tbody>
+                                </table>
+                                <div>    
+                                    <input type="hidden" name="idMod" value="{{ personXII.id }}">                      
+                                    <textarea class="form-control mb-3" id="exampleFormControlTextarea6" rows="3" placeholder="Dodaj komentarz (nie wymagany)" name="comment"></textarea>
+                                    <button class="btn btn-primary" name="usermod" value="{{ user.rank }} {{ user.surname }}" type="submit">Przyjęte</button>
+                                </div>           
+                            </form>
+                        </div>
+                    </div>
+                    {% endif %}
+
+                    {% if categoriesLeftSrw %} 
+                    <button class="btn btn-warning collapsed bt-sm m-3 w-75" data-bs-toggle="collapse" href="#multiCollapseExample13" role="button" aria-expanded="false" aria-controls="multiCollapseExample13" width="22" height="22"> Skrytki Lewe </button>
+                    <div class="col w-100 m-auto">
+                        <div class="multi-collapse collapse w-100 m-auto" id="multiCollapseExample13">
                             <form method="post" action="/srw/leftsrw">
                                 <table class="table">
                                     <thead>
@@ -298,10 +606,10 @@
                                             <th colspan="4"><h5>{{ nameSRW }}</h5></th>
                                         </tr>    
                                         <tr>
-                                            <td colspan="4"><p>Ostatnio przejmował: {{ personVI.user }} {{ personVI.date }}</p></td>
+                                            <td colspan="4"><p>Ostatnio przejmował: {{ personXIII.user }} {{ personXIII.date }}</p></td>
                                         </tr> 
                                         <tr>
-                                            <td colspan="4"><p>{{ personVI.comment }}</p></td>
+                                            <td colspan="4"><p>{{ personXIII.comment }}</p></td>
                                         </tr> 
                                         <tr>
                                             <th scope="col"></th>
@@ -322,7 +630,7 @@
                                     </tbody>
                                 </table>
                                 <div>    
-                                    <input type="hidden" name="idMod" value="{{ personVI.id }}">                      
+                                    <input type="hidden" name="idMod" value="{{ personXIII.id }}">                      
                                     <textarea class="form-control mb-3" id="exampleFormControlTextarea6" rows="3" placeholder="Dodaj komentarz (nie wymagany)" name="comment"></textarea>
                                     <button class="btn btn-primary" name="usermod" value="{{ user.rank }} {{ user.surname }}" type="submit">Przyjęte</button>
                                 </div>           
@@ -332,9 +640,9 @@
                     {% endif %}
 
                     {% if categoriesRightSrw %} 
-                    <button class="btn btn-warning collapsed bt-sm m-3 w-75" data-bs-toggle="collapse" href="#multiCollapseExample7" role="button" aria-expanded="false" aria-controls="multiCollapseExample7" width="22" height="22"> Prawa + Dach </button>
+                    <button class="btn btn-warning collapsed bt-sm m-3 w-75" data-bs-toggle="collapse" href="#multiCollapseExample14" role="button" aria-expanded="false" aria-controls="multiCollapseExample14" width="22" height="22"> Skrytki Prawe </button>
                     <div class="col w-100 m-auto">
-                        <div class="multi-collapse collapse w-100 m-auto" id="multiCollapseExample7">
+                        <div class="multi-collapse collapse w-100 m-auto" id="multiCollapseExample14">
                             <form method="post" action="/srw/rightsrw">
                                 <table class="table">
                                     <thead>
@@ -342,10 +650,10 @@
                                             <th colspan="4"><h5>{{ nameSRW }}</h5></th>
                                         </tr>    
                                         <tr>
-                                            <td colspan="4"><p>Ostatnio przejmował: {{ personVII.user }} {{ personVII.date }}</p></td>
+                                            <td colspan="4"><p>Ostatnio przejmował: {{ personXIV.user }} {{ personXIV.date }}</p></td>
                                         </tr> 
                                         <tr>
-                                            <td colspan="4"><p>{{ personVII.comment }}</p></td>
+                                            <td colspan="4"><p>{{ personXIV.comment }}</p></td>
                                         </tr> 
                                         <tr>
                                             <th scope="col"></th>
@@ -366,7 +674,51 @@
                                     </tbody>
                                 </table>
                                 <div>    
-                                    <input type="hidden" name="idMod" value="{{ personVII.id }}">                      
+                                    <input type="hidden" name="idMod" value="{{ personXIV.id }}">                      
+                                    <textarea class="form-control mb-3" id="exampleFormControlTextarea7" rows="3" placeholder="Dodaj komentarz (nie wymagany)" name="comment"></textarea>
+                                    <button class="btn btn-primary" name="usermod" value="{{ user.rank }} {{ user.surname }}" type="submit">Przyjęte</button>
+                                </div>           
+                            </form>
+                        </div>
+                    </div>
+                    {% endif %}
+
+                    {% if categoriesRoofSrw %} 
+                    <button class="btn btn-warning collapsed bt-sm m-3 w-75" data-bs-toggle="collapse" href="#multiCollapseExample15" role="button" aria-expanded="false" aria-controls="multiCollapseExample15" width="22" height="22"> Dach </button>
+                    <div class="col w-100 m-auto">
+                        <div class="multi-collapse collapse w-100 m-auto" id="multiCollapseExample15">
+                            <form method="post" action="/srw/roofsrw">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th colspan="4"><h5>{{ nameSRW }}</h5></th>
+                                        </tr>    
+                                        <tr>
+                                            <td colspan="4"><p>Ostatnio przejmował: {{ personXV.user }} {{ personXV.date }}</p></td>
+                                        </tr> 
+                                        <tr>
+                                            <td colspan="4"><p>{{ personXV.comment }}</p></td>
+                                        </tr> 
+                                        <tr>
+                                            <th scope="col"></th>
+                                            <th scope="col">Nazwa:</th>
+                                            <th scope="col">Ilość:</th>
+                                            <th scope="col">Miejsce:</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for category in categoriesRoofSrw %}  
+                                        <tr class="table-{{ category.status }}">
+                                            <th scope="row"><input class="form-check-input m-0" type="checkbox" name="checkbox[]" value="{{ category.id }}"  id="{{ category.id }}"></th>
+                                            <td><label class="form-check-label w-90" for="{{ category.id }}">{{ category.name }}</label></td>
+                                            <td><label class="form-check-label w-90" for="{{ category.id }}">{{ category.quantity }}</label></td>
+                                            <td><label class="form-check-label w-90" for="{{ category.id }}">{{ category.space }}</label></td>
+                                        </tr>
+                                        {% endfor %} 
+                                    </tbody>
+                                </table>
+                                <div>    
+                                    <input type="hidden" name="idMod" value="{{ personXV.id }}">                      
                                     <textarea class="form-control mb-3" id="exampleFormControlTextarea7" rows="3" placeholder="Dodaj komentarz (nie wymagany)" name="comment"></textarea>
                                     <button class="btn btn-primary" name="usermod" value="{{ user.rank }} {{ user.surname }}" type="submit">Przyjęte</button>
                                 </div>           
@@ -376,9 +728,9 @@
                     {% endif %}
 
                     {% if categoriesSlrr %} 
-                    <button class="btn btn-warning collapsed bt-sm m-3 w-75" data-bs-toggle="collapse" href="#multiCollapseExample8" role="button" aria-expanded="false" aria-controls="multiCollapseExample8" width="22" height="22"> SLRr Hilux </button>
+                    <button class="btn btn-warning collapsed bt-sm m-3 w-75" data-bs-toggle="collapse" href="#multiCollapseExample16" role="button" aria-expanded="false" aria-controls="multiCollapseExample16" width="22" height="22"> SLRr Hilux </button>
                     <div class="col w-100 m-auto">
-                        <div class="multi-collapse collapse w-100 m-auto" id="multiCollapseExample8">
+                        <div class="multi-collapse collapse w-100 m-auto" id="multiCollapseExample16">
                             <form method="post" action="/slrr/slrrset">
                                 <table class="table">
                                     <thead>
@@ -386,10 +738,10 @@
                                             <th colspan="4"><h5>{{ nameSlrr }}</h5></th>
                                         </tr>    
                                         <tr>
-                                            <td colspan="4"><p>Ostatnio przejmował: {{ personVIII.user }} {{ personVIII.date }}</p></td>
+                                            <td colspan="4"><p>Ostatnio przejmował: {{ personXVI.user }} {{ personXVI.date }}</p></td>
                                         </tr> 
                                         <tr>
-                                            <td colspan="4"><p>{{ personVIII.comment }}</p></td>
+                                            <td colspan="4"><p>{{ personXVI.comment }}</p></td>
                                         </tr> 
                                         <tr>
                                             <th scope="col"></th>
@@ -410,7 +762,7 @@
                                     </tbody>
                                 </table>
                                 <div>    
-                                    <input type="hidden" name="idMod" value="{{ personVIII.id }}">                      
+                                    <input type="hidden" name="idMod" value="{{ personXVI.id }}">                      
                                     <textarea class="form-control mb-3" id="exampleFormControlTextarea8" rows="3" placeholder="Dodaj komentarz (nie wymagany)" name="comment"></textarea>
                                     <button class="btn btn-primary" name="usermod" value="{{ user.rank }} {{ user.surname }}" type="submit">Przyjęte</button>
                                 </div>           

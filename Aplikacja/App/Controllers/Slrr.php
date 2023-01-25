@@ -7,7 +7,6 @@ use \App\Auth;
 use \App\Flash;
 use \App\Models\getSLRR;
 use \App\Models\getModification;
-
 use \App\Models\setSLRR;
 use \App\Models\setModification;
 
@@ -23,13 +22,13 @@ class Slrr extends Authenticated{
     public function slrrAction(){
         $categoriesSlrr = getSLRR::getSLRRcategories();
 
-        $personVIII = getModification::getLastModification('8');
+        $personXVI = getModification::getLastModification('16');
 
         $nameSlrr = "SLRr Hilux";
         View::renderTemplate('Equipment/equipment.html', [
             'user' => $this->user,
             'categoriesSlrr' => $categoriesSlrr,
-            'personVIII' => $personVIII,
+            'personXVI' => $personXVI,
             'nameSlrr' => $nameSlrr
         ]);
     }

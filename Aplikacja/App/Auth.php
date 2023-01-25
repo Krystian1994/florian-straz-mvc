@@ -33,7 +33,7 @@ class Auth{
             setcookie(
                 session_name(),
                 '',
-                time() - 42000,
+                time(),
                 $params['path'],
                 $params['domain'],
                 $params['secure'],
@@ -42,9 +42,9 @@ class Auth{
         }
 
         // Finally destroy the session
-        session_destroy();
+        //session_destroy();
 
-        static::forgetLogin();
+        //static::forgetLogin();
     }
 
     public static function rememberRequestedPage(){
@@ -97,7 +97,7 @@ class Auth{
                 $remembered_login->delete();
             }
 
-            setcookie('remember_me', '', time() - 3600);  // set to expire in the past
+            setcookie('remember_me', '', time());  // set to expire in the past
         }
     }
 }

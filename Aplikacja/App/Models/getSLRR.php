@@ -7,7 +7,7 @@ use \App\Token;
 
 class getSLRR extends \Core\Model{
     public static function getSLRRcategories(){
-        $sql = 'SELECT * FROM slrr ORDER BY space';
+        $sql = 'SELECT * FROM slrr ORDER BY space, name';
 
         $db = static::getDB();
         $stmt = $db->prepare($sql);

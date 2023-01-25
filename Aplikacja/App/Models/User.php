@@ -22,30 +22,56 @@ class User extends \Core\Model{
         $this->validate();
         $this->recaptchaCheck();
         if (empty($this->errors)) {
-            $password_hash = password_hash($this->password, PASSWORD_DEFAULT);
+            if($this->authenticateRegistr($this->password)){
 
-            $sql = 'UPDATE users SET rank = :rank, position = :position, password = :password_hash, email = :email, privacy_police = :privacy_police WHERE username = :username AND surname = :surname AND division = :division';
+                $sql = 'UPDATE users SET rank = :rank, position = :position, email = :email, privacy_police = :privacy_police WHERE username = :username AND surname = :surname AND division = :division';
 
-            $db = static::getDB();
-            $stmt = $db->prepare($sql);
-            
-            $stmt->bindValue(':rank', $this->rank, PDO::PARAM_STR);
-            $stmt->bindValue(':position', $this->position, PDO::PARAM_STR);
-            $stmt->bindValue(':password_hash', $password_hash, PDO::PARAM_STR);
-            $stmt->bindValue(':email', $this->email, PDO::PARAM_STR);
-            $stmt->bindValue(':privacy_police', $this->police, PDO::PARAM_STR);
-            $stmt->bindValue(':username', $this->username, PDO::PARAM_STR);
-            $stmt->bindValue(':surname', $this->surname, PDO::PARAM_STR);
-            $stmt->bindValue(':division', $this->division, PDO::PARAM_STR);
+                $db = static::getDB();
+                $stmt = $db->prepare($sql);
+                
+                $stmt->bindValue(':rank', $this->rank, PDO::PARAM_STR);
+                $stmt->bindValue(':position', $this->position, PDO::PARAM_STR);
+                $stmt->bindValue(':email', $this->email, PDO::PARAM_STR);
+                $stmt->bindValue(':privacy_police', $this->police, PDO::PARAM_STR);
+                $stmt->bindValue(':username', $this->username, PDO::PARAM_STR);
+                $stmt->bindValue(':surname', $this->surname, PDO::PARAM_STR);
+                $stmt->bindValue(':division', $this->division, PDO::PARAM_STR);
 
-            $stmt->execute();
+                $stmt->execute();
 
-            return true;
+                return true;
+            }   
+            $this->errors[] = 'Błąd!';  
+            return false;     
         }
-
+        return false;
+    }
+    public function authenticateRegistr($password){
+        $user = static::findByNameSurname($this->username,$this->surname);
+        
+        if($user){
+            if (password_verify($password, $user->password)) {
+                return true;
+            }
+            return false;
+        }
         return false;
     }
 
+    public static function findByNameSurname($name,$surname){
+        $sql = 'SELECT * FROM users WHERE username = :username AND surname = :surname';
+
+        $db = static::getDB();
+        $stmt = $db->prepare($sql);
+        $stmt->bindValue(':username', $name, PDO::PARAM_STR);
+        $stmt->bindValue(':surname', $surname, PDO::PARAM_STR);
+        $stmt->setFetchMode(PDO::FETCH_CLASS, get_called_class());
+        $stmt->execute();
+
+        return $stmt->fetch();
+    }
+    
+    
     private function recaptchaCheck(){
          //sprawdzamy recaptche
          $secret = '6LcIkMYjAAAAAGETW4ikY4EYjA4jIcE-uqOz_mez';
@@ -94,15 +120,17 @@ class User extends \Core\Model{
                 $this->errors[] = 'Hasło musi zawierać minimum jedną literę';
             }
     
-            if (preg_match('/.*\d+.*/i', $this->password) == 0) {
-                $this->errors[] = 'Hasło musi zawierać minimum jedną liczbę';
-            }
+            // if (preg_match('/.*\d+.*/i', $this->password) == 0) {
+            //     $this->errors[] = 'Hasło musi zawierać minimum jedną liczbę';
+            // }
+        } else {
+            $this->errors[] = 'Nie wpisano hasła!';
         }
 
         // user exist?
-        if($this->userExist()){
-            $this->errors[] = 'Funkcjoraiusz o podanym Imieniu i Nazwisku dokonał rejestracji';
-        }
+        // if($this->userExist()){
+        //     $this->errors[] = 'Funkcjoraiusz o podanym Imieniu i Nazwisku dokonał rejestracji';
+        // }
 
         // is user from the unit?
         if($this->userFromUnit()){
