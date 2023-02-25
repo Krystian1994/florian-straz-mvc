@@ -64,8 +64,19 @@
                     <p id="logIn" class="text-success mt-5 p-3">Zalogowany: {{ user.rank }} {{ user.username }} {{user.surname}}</p>
                 </div>
             </nav>
-            <div class="col-12 col-sm-6 col-md-9 text-center"  style="min-height: 500px;">
-                <iframe  width="100%" height="100%" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTbreV_WE-BalMqlBlHGePdkssQAP9j2-CQU5Tnc0PCj1ScUs8omnxF0JuBlwiuDw/pubhtml?widget=true&amp;headers=false"></iframe>
+            <div class="col-12 col-sm-6 col-md-9 container text-center p-3">
+                <div class="mt-5"><h3>Zmiana I</h3></div>
+                <div class="sol-sm"  style="height: 500px;">
+                    <iframe  width="100%" height="100%" src="{{ graphicI }}"></iframe>
+                </div>
+                <div class="mt-5"><h3>Zmiana II</h3></div>
+                <div class="sol-sm"  style="height: 500px;">
+                    <iframe  width="100%" height="100%" src="{{ graphicII }}"></iframe>
+                </div>
+                <div class="mt-5"><h3>Zmiana III</h3></div>
+                <div class="sol-sm"  style="height: 500px;">
+                    <iframe  width="100%" height="100%" src="{{ graphicIII }}"></iframe>
+                </div>
             </div>
         </div>
     </div>
